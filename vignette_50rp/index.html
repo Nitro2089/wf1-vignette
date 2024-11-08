@@ -218,7 +218,7 @@
                 </div>
             </div> -->
         </div>
-        <input type="submit" value="Absenden">
+        <input type="submit" value="Absenden" onclick="showThankYouMessage()">
     </form>
     
 
@@ -320,6 +320,10 @@
             sliderValue.style.left = offset + 'px';
         }
 
+        function showThankYouMessage() {
+            alert("Vielen Dank für Ihre Teilnahme!");
+        }
+
         function validateForm() {
             var freeCoffee = document.querySelector('input[name="freeCoffe"]:checked');
             if (!freeCoffee) {
@@ -347,7 +351,7 @@
                       "Zukünftiger Kaffeekonsum: " + futureCoffeeAmount + (futureCoffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
                       "Zukünftiges Arbeitspensum: " + futureWorkload + "%");
             } else {
-                alert("Vielen Dank für Ihre Teilnahme!\n" +
+                alert("Herzlichen Dank für Deine Teilnahme und Zeit!\n" +
                       "Gratiskaffee-Nutzung: " + freeCoffee.value);
             }
             return false; // Prevents form submission for this example
