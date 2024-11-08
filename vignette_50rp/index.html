@@ -89,6 +89,10 @@
         .hidden {
             display: none;
         }
+        .inline-options {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -139,6 +143,7 @@
                     </select>
                     Arbeitspensum.
                 </div>
+            <div class="question"></div>
                 <div>
                     <img src="bild_50Rp.png" alt="Bild 50 Rp">
                 </div>
@@ -148,6 +153,30 @@
                     Die bestehende Kaffeemaschine bietet Ihnen die übliche Auswahl zwischen Kaffee und Espresso aus der bewerten UCC Kaffeehausmischung.<br>
                     Für den Kaffee wird eine Gebühr von CHF <span id="pricePerCup">0.50</span> pro Tasse erhoben.<br>
                     Bei Deinem aktuellen Kaffeekonsum von <span id="monthlyCups">1</span> Tassen pro Monat würde dies einer monatlichen Ausgaben von <span id="monthlyCost">0.50</span> CHF entsprechen.
+                </div>
+            </div>
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">4.</span>
+                    Wie würde sich Dein Kaffeekonsum durch den Preis verändern?
+                </label>
+                <div>
+                    Ich trinke <br><br>
+                    <label><input type="radio" name="consumptionChange" value="weniger" required> weniger</label>
+                    <label><input type="radio" name="consumptionChange" value="gleichviel"> gleichviel</label>
+                    <label><input type="radio" name="consumptionChange" value="mehr"> mehr</label>
+                </div>
+            </div>
+            <div class="question">
+                <label class="question-label">
+                    <span class="question-number">5.</span>
+                    Wie wahrscheinlich würde sich Dein Kaffeekonsum verändern?
+                </label>
+                <div class="inline-options">
+                    <label><input type="radio" name="consumptionLikelihood" value="sehr_unwahrscheinlich" required> Sehr unwahrscheinlich</label>
+                    <label><input type="radio" name="consumptionLikelihood" value="relativ_unwahrscheinlich"> Relativ unwahrscheinlich</label>
+                    <label><input type="radio" name="consumptionLikelihood" value="relativ_wahrscheinlich"> Relativ wahrscheinlich</label>
+                    <label><input type="radio" name="consumptionLikelihood" value="sehr_wahrscheinlich"> Sehr wahrscheinlich</label>
                 </div>
             </div>
             <!-- <div class="question">
@@ -191,6 +220,7 @@
         </div>
         <input type="submit" value="Absenden">
     </form>
+    
 
     <script>
         const pricePerCup = 0.50;
