@@ -209,10 +209,20 @@
         function toggleQuestions() {
             var freeCoffee = document.querySelector('input[name="freeCoffe"]:checked');
             var additionalQuestions = document.getElementById('additionalQuestions');
+            var ageInput = document.querySelector('input[name="age"]');
+            var consumptionChangeInputs = document.querySelectorAll('input[name="consumptionChange"]');
+            var consumptionLikelihoodInputs = document.querySelectorAll('input[name="consumptionLikelihood"]');
+
             if (freeCoffee && freeCoffee.value === 'ja') {
                 additionalQuestions.classList.remove('hidden');
+                ageInput.setAttribute('required', 'required');
+                consumptionChangeInputs.forEach(input => input.setAttribute('required', 'required'));
+                consumptionLikelihoodInputs.forEach(input => input.setAttribute('required', 'required'));
             } else {
                 additionalQuestions.classList.add('hidden');
+                ageInput.removeAttribute('required');
+                consumptionChangeInputs.forEach(input => input.removeAttribute('required'));
+                consumptionLikelihoodInputs.forEach(input => input.removeAttribute('required'));
             }
         }
 
@@ -271,23 +281,28 @@
                 return false;
             }
 
-            if (freeCoffee.value === 'ja') {
+            var additionalQuestions = document.getElementById('additionalQuestions');
+            if (freeCoffee.value === 'ja' && !additionalQuestions.classList.contains('hidden')) {
                 var coffeeAmount = document.getElementById('coffeeSlider').value;
                 var workload = document.getElementById('workload').value;
                 var consumptionChange = document.querySelector('input[name="consumptionChange"]:checked');
+                var consumptionLikelihood = document.querySelector('input[name="consumptionLikelihood"]:checked');
+                var age = document.querySelector('input[name="age"]').value;
 
-                if (!consumptionChange) {
+                if (!age || !consumptionChange || !consumptionLikelihood) {
                     alert("Bitte beantworten Sie alle Fragen.");
                     return false;
-                }else{
+                } else {
                     alert("Vielen Dank für Deine Teilnahme!\n");
-                // alert("Vielen Dank für Deine Teilnahme!\n" +
-                //       "Gratiskaffee-Nutzung: " + freeCoffee.value + "\n" +
-                //       "Aktueller Kaffeekonsum: " + coffeeAmount + (coffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
-                //       "Aktuelles Arbeitspensum: " + workload + "%\n" +
-                //       "Änderung bei 0.50 CHF pro Tasse: " + consumptionChange.value + "\n"
-                //     );
+                    // alert("Vielen Dank für Deine Teilnahme!\n" +
+                    //       "Gratiskaffee-Nutzung: " + freeCoffee.value + "\n" +
+                    //       "Aktueller Kaffeekonsum: " + coffeeAmount + (coffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
+                    //       "Aktuelles Arbeitspensum: " + workload + "%\n" +
+                    //       "Änderung bei 0.50 CHF pro Tasse: " + consumptionChange.value + "\n"
+                    //     );
                 }
+            } else {
+                alert("Vielen Dank für Deine Teilnahme!\n");
             }
             return false; // Prevents form submission for this example
         }
