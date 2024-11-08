@@ -255,7 +255,7 @@
             sliderValue.textContent = coffeeValue + (coffeeValue == 1 ? " Tasse" : " Tassen");
 
             // Calculate coffee per day
-            var coffeePerDayValue = (coffeeValue / 21 * workloadValue).toFixed(2);
+            var coffeePerDayValue = (coffeeValue / (21 * workloadValue)).toFixed(2);
             coffeePerDay.textContent = coffeePerDayValue;
 
             // Coffee per month
