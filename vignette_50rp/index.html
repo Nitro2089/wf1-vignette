@@ -97,6 +97,19 @@
 </head>
 <body>
     <h1>Kaffeekonsum-Umfrage</h1>
+    <p>
+        Liebe/r Teilnehmer/in,<br><br>
+        Herzlichen Dank für Deine Teilnahme an dieser Befragung. <br>
+        Wir belästigen Dich nicht lange, 5 Minuten sollten ausreichen, um uns zu helfen, das Kaffeeangebot in unserem Büro neu zu denken. <br>
+        Im Zusammenhang mit der betrieblichen Ablaufoptimierung, nach der pandemiebedingten Homeoffice Zeit, möchten wir den Kaffeekonsum unserer Mitarbeiter etwas genauer unter die Lupe nehmen. <br>
+        Wir, das sind Kevin Fuhrer und ich, Daniel Eymann. <br>
+        In der Folge wird dir ein hypothetisches Szenario beschrieben. <br>
+        Versuche dich bestmöglich in die Situation zu versetzten und ehrlich zu antworten. <br>
+        Die Auswertung erfolgt vollkommen anonym, Dein Name wird nicht mit Deiner Antwort verknüpft! <br>
+        Solltest Du unsicher sein, oder Dich nicht in der Lage fühlen zu antworten, so hinterlass bei der Frage einfach ein Häckchen bei «kann ich nicht beantworten». <br>
+        Die Umfrage wird anonym durchgeführt, die erhobenen Daten lassen also keine Rückschlüsse auf einzelne Mitarbeiter:innen zu. Solltet Ihr Fragen oder Anregungen haben, so meldet euch ungeniert bei uns. Ob persönlich, via Teams oder über die Emailadresse kaffee@musterag.ch spielt dabei keine Rolle. Die Umfrage läuft ab sofort bis und mit Freitag 22. November 2024. Die Resultate präsentieren wir Euch an der nächsten Mitarbeiterinformation und bedanken uns schon jetzt für Deine Teilnahme. 
+
+    </p>
     <form onsubmit="return validateForm()">
         <div class="question">
             <label class="question-label">
@@ -125,12 +138,12 @@
                     Wie viele Tassen trinkst du pro Monat?
                 </label>
                 <div class="slider-container">
-                    <input type="range" id="coffeeSlider" name="coffeeSlider" min="1" max="210" value="1" oninput="updateCalculation()">
+                    <input type="range" id="coffeeSlider" name="coffeeSlider" min="1" max="210" value="10" oninput="updateCalculation()">
                     <div id="sliderValue" class="slider-value">1 Tasse</div>
                 </div>
                 <div class="hint">
-                    Dies entspricht <span id="coffeePerDay">0.05</span> Kaffees pro Tag bei einem 
-                    <select id="workload" name="workload" onchange="updateCalculation(); syncFutureWorkload();">
+                    Dies entspricht ungefähr <span id="coffeePerDay">0.05</span> Kaffees pro Tag bei einem 
+                    <select id="workload" name="workload" onchange="updateCalculation();">
                         <option value="100">100%</option>
                         <option value="90">90%</option>
                         <option value="80">80%</option>
@@ -179,46 +192,8 @@
                     <label><input type="radio" name="consumptionLikelihood" value="sehr_wahrscheinlich"> Sehr wahrscheinlich</label>
                 </div>
             </div>
-            <!-- <div class="question">
-                <label class="question-label">
-                    <span class="question-number">3.</span>
-                    Würde sich durch den Preis von 0.50 CHF pro Tasse Kaffee Dein Kaffeekonsum (Tassen / Monat) verändern?
-                </label>
-                <div class="hint">
-                    Dies entspricht bei <span id="coffeeAmount">1</span> Tassen Kaffee einer monatlichen Ausgabe von <span id="monthlyExpense">0.50</span> CHF.
-                </div>
-                <div class="radio-options">
-                    <label><input type="radio" name="consumptionChange" value="ja" onchange="toggleFutureConsumption()" required> Ja</label>
-                    <label><input type="radio" name="consumptionChange" value="nein" onchange="toggleFutureConsumption()"> Nein</label>
-                </div>
-            </div>
-            <div id="futureConsumption" class="question hidden">
-                <label class="question-label" for="futureCoffeeSlider">
-                    <span class="question-number">4.</span>
-                    Wie viel Tassen Kaffee würdest Du pro Monat trinken, wenn du zukünftig 0.50 CHF pro Tasse Kaffee zahlen müsstest?
-                </label>
-                <div class="slider-container">
-                    <input type="range" id="futureCoffeeSlider" name="futureCoffeeSlider" min="0" max="210" value="1" oninput="updateFutureCalculation()">
-                    <div id="futureSliderValue" class="slider-value">1 Tasse</div>
-                </div>
-                <div class="hint">
-                    Dies entspricht <span id="futureCoffeePerDay">0.05</span> Kaffees pro Tag bei einem 
-                    <select id="futureWorkload" name="futureWorkload" onchange="updateFutureCalculation()">
-                        <option value="100">100%</option>
-                        <option value="90">90%</option>
-                        <option value="80">80%</option>
-                        <option value="70">70%</option>
-                        <option value="60">60%</option>
-                        <option value="50">50%</option>
-                        <option value="40">40%</option>
-                        <option value="30">30%</option>
-                        <option value="20">20%</option>
-                    </select>
-                    Arbeitspensum und einer monatlichen Ausgabe von <span id="futureMonthlyExpense">0.50</span> CHF.
-                </div>
-            </div> -->
         </div>
-        <input type="submit" value="Absenden" onclick="showThankYouMessage()">
+        <input type="submit" value="Absenden">
     </form>
     
 
@@ -275,59 +250,20 @@
 
             // Calculate monthly expense
             var monthlyExpenseValue = (slider.value * pricePerCup).toFixed(2);
-            var monthlyCups = document.getElementById("monthlyCost");
-            monthlyCups.textContent = monthlyExpenseValue;
+            var monthlyCost = document.getElementById("monthlyCost");
+            monthlyCost.textContent = monthlyExpenseValue;
 
             // Update slider value position
             var percent = (slider.value - slider.min) / (slider.max - slider.min);
             var offset = percent * slider.offsetWidth;
             sliderValue.style.left = offset + 'px';
-
-            updateConsumptionChange();
-        }
-
-        function updateConsumptionChange() {
-            var coffeeAmount = document.getElementById('coffeeSlider').value;
-            var monthlyExpense = (coffeeAmount * 0.50).toFixed(2);
-            
-            document.getElementById('coffeeAmount').textContent = coffeeAmount;
-            document.getElementById('monthlyExpense').textContent = monthlyExpense;
-        }
-
-        function updateFutureCalculation() {
-            var slider = document.getElementById('futureCoffeeSlider');
-            var sliderValue = document.getElementById('futureSliderValue');
-            var workload = document.getElementById('futureWorkload');
-            var coffeePerDay = document.getElementById('futureCoffeePerDay');
-            var monthlyExpense = document.getElementById('futureMonthlyExpense');
-            
-            var coffeeValue = parseInt(slider.value);
-            var workloadValue = parseInt(workload.value) / 100;
-            
-            sliderValue.textContent = coffeeValue + (coffeeValue == 1 ? " Tasse" : " Tassen");
-
-            // Calculate coffee per day
-            var coffeePerDayValue = (coffeeValue / 21 * workloadValue).toFixed(2);
-            coffeePerDay.textContent = coffeePerDayValue;
-
-            // Calculate monthly expense
-            var monthlyExpenseValue = (coffeeValue * 0.50).toFixed(2);
-            monthlyExpense.textContent = monthlyExpenseValue;
-
-            // Update slider value position
-            var percent = (slider.value - slider.min) / (slider.max - slider.min);
-            var offset = percent * slider.offsetWidth;
-            sliderValue.style.left = offset + 'px';
-        }
-
-        function showThankYouMessage() {
-            alert("Vielen Dank für Ihre Teilnahme!");
         }
 
         function validateForm() {
             var freeCoffee = document.querySelector('input[name="freeCoffe"]:checked');
             if (!freeCoffee) {
                 alert("Bitte beantworten Sie die erste Frage.");
+                console.log("freeCoffee");
                 return false;
             }
 
@@ -335,31 +271,25 @@
                 var coffeeAmount = document.getElementById('coffeeSlider').value;
                 var workload = document.getElementById('workload').value;
                 var consumptionChange = document.querySelector('input[name="consumptionChange"]:checked');
-                var futureCoffeeAmount = document.getElementById('futureCoffeeSlider').value;
-                var futureWorkload = document.getElementById('futureWorkload').value;
 
                 if (!consumptionChange) {
                     alert("Bitte beantworten Sie alle Fragen.");
                     return false;
+                }else{
+                    alert("Vielen Dank für Deine Teilnahme!\n");
+                // alert("Vielen Dank für Deine Teilnahme!\n" +
+                //       "Gratiskaffee-Nutzung: " + freeCoffee.value + "\n" +
+                //       "Aktueller Kaffeekonsum: " + coffeeAmount + (coffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
+                //       "Aktuelles Arbeitspensum: " + workload + "%\n" +
+                //       "Änderung bei 0.50 CHF pro Tasse: " + consumptionChange.value + "\n"
+                //     );
                 }
-
-                alert("Vielen Dank für Ihre Teilnahme!\n" +
-                      "Gratiskaffee-Nutzung: " + freeCoffee.value + "\n" +
-                      "Aktueller Kaffeekonsum: " + coffeeAmount + (coffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
-                      "Aktuelles Arbeitspensum: " + workload + "%\n" +
-                      "Änderung bei 0.50 CHF pro Tasse: " + consumptionChange.value + "\n" +
-                      "Zukünftiger Kaffeekonsum: " + futureCoffeeAmount + (futureCoffeeAmount == 1 ? " Tasse" : " Tassen") + " pro Monat\n" +
-                      "Zukünftiges Arbeitspensum: " + futureWorkload + "%");
-            } else {
-                alert("Herzlichen Dank für Deine Teilnahme und Zeit!\n" +
-                      "Gratiskaffee-Nutzung: " + freeCoffee.value);
             }
             return false; // Prevents form submission for this example
         }
 
         // Initialize the calculations on page load
         updateCalculation();
-        updateFutureCalculation();
     </script>
 </body>
 </html>
