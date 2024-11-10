@@ -179,15 +179,15 @@
                 </label>
                 <div>
                     Ich trinke <br><br>
-                    <label><input type="radio" name="consumptionChange" value="weniger" required> weniger</label>
-                    <label><input type="radio" name="consumptionChange" value="gleichviel"> gleichviel</label>
-                    <label><input type="radio" name="consumptionChange" value="mehr"> mehr</label>
+                    <label><input type="radio" name="consumptionChange" value="weniger" required onchange="toggleQuestion5()"> weniger</label>
+                    <label><input type="radio" name="consumptionChange" value="gleichviel" onchange="toggleQuestion5()"> gleichviel</label>
+                    <label><input type="radio" name="consumptionChange" value="mehr" onchange="toggleQuestion5()"> mehr</label>
                 </div>
             </div>
-            <div class="question">
+            <div id="question5" class="question hidden">
                 <label class="question-label">
                     <span class="question-number">5.</span>
-                    Wie wahrscheinlich würde sich Dein Kaffeekonsum verändern?
+                    <span id="consumptionChangeQuestion"></span>
                 </label>
                 <div class="inline-options">
                     <label><input type="radio" name="consumptionLikelihood" value="sehr_unwahrscheinlich" required> Sehr unwahrscheinlich</label>
@@ -307,6 +307,23 @@
             return false; // Prevents form submission for this example
         }
 
+        function toggleQuestion5() {
+            var question5 = document.getElementById('question5');
+            question5.classList.remove('hidden');
+        }
+
+        document.querySelectorAll('input[name="consumptionChange"]').forEach(input => {
+            input.addEventListener('change', function() {
+                var consumptionChangeQuestion = document.getElementById('consumptionChangeQuestion');
+                if (this.value === 'gleichviel') {
+                    consumptionChangeQuestion.textContent = 'Wie wahrscheinlich würde Dein Kaffeekonsum gleichbleiben?';
+                    
+                } else {
+                    consumptionChangeQuestion.textContent = 'Wie wahrscheinlich würde sich Dein Kaffeekonsum verändern?';
+                }
+            });
+        });
+        
         // Initialize the calculations on page load
         updateCalculation();
     </script>
