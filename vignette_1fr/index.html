@@ -98,9 +98,17 @@
         .inline-options label {
             flex: 1;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px; /* Adjust height as needed */
         }
         .inline-options label div {
-            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50%; /* Adjust height as needed */
         }
         img {
             max-width: 100%;
@@ -199,27 +207,27 @@
                 <div class="inline-options">
                     <label>
                         <div>Sehr unsicher</div>
-                        <input type="radio" name="consumptionLikelihood" value="1" required> 1
+                        <div><input type="radio" name="consumptionLikelihood" value="1" required></div>
                     </label>
                     <label>
-                        <div>&nbsp;</div>
-                        <input type="radio" name="consumptionLikelihood" value="2"> 2
+                        <div>Unsicher</div>
+                        <div><input type="radio" name="consumptionLikelihood" value="2"></div>
                     </label>
                     <label>
-                        <div>&nbsp;</div>
-                        <input type="radio" name="consumptionLikelihood" value="3"> 3
+                        <div>Eher unsicher</div>
+                        <div><input type="radio" name="consumptionLikelihood" value="3"></div>
                     </label>
                     <label>
-                        <div>&nbsp;</div>
-                        <input type="radio" name="consumptionLikelihood" value="4"> 4
+                        <div>Eher sicher</div>
+                        <div><input type="radio" name="consumptionLikelihood" value="4"></div>
                     </label>
                     <label>
-                        <div>&nbsp;</div>
-                        <input type="radio" name="consumptionLikelihood" value="5"> 5
+                        <div>Sicher</div>
+                        <div><input type="radio" name="consumptionLikelihood" value="5"></div>
                     </label>
                     <label>
                         <div>Sehr sicher</div>
-                        <input type="radio" name="consumptionLikelihood" value="6"> 6
+                        <div><input type="radio" name="consumptionLikelihood" value="6"></div>
                     </label>
                 </div>
             </div>
@@ -350,4 +358,4 @@
         updateCalculation();
     </script>
 </body>
-</html>
+</html> 
