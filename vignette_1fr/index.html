@@ -342,18 +342,6 @@
             return false; // Prevents form submission for this example
         }
 
-        document.querySelectorAll('input[name="consumptionChange"]').forEach(input => {
-            input.addEventListener('change', function() {
-                var consumptionChangeQuestion = document.getElementById('consumptionChangeQuestion');
-                if (this.value === 'gleichviel') {
-                    consumptionChangeQuestion.textContent = 'Wie wahrscheinlich würde Dein Kaffeekonsum gleich bleiben?';
-                    
-                } else {
-                    consumptionChangeQuestion.textContent = 'Wie wahrscheinlich würde sich Dein Kaffeekonsum verändern?';
-                }
-            });
-        });
-
         // Initialize the calculations on page load
         updateCalculation();
     </script>
