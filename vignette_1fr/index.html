@@ -91,7 +91,16 @@
         }
         .inline-options {
             display: flex;
+            justify-content: space-between;
             gap: 10px;
+            width: 100%;
+        }
+        .inline-options label {
+            flex: 1;
+            text-align: center;
+        }
+        .inline-options label div {
+            white-space: nowrap;
         }
         img {
             max-width: 100%;
@@ -102,17 +111,15 @@
 <body>
     <h1>Kaffeekonsum-Umfrage</h1>
     <p>
-        Liebe/r Teilnehmer/in,<br><br>
-        Herzlichen Dank für Deine Teilnahme an dieser Befragung. <br>
-        Wir belästigen Dich nicht lange, 5 Minuten sollten ausreichen, um uns zu helfen, das Kaffeeangebot in unserem Büro neu zu denken. <br>
-        Im Zusammenhang mit der betrieblichen Ablaufoptimierung, nach der pandemiebedingten Homeoffice Zeit, möchten wir den Kaffeekonsum unserer Mitarbeiter etwas genauer unter die Lupe nehmen. <br>
-        Wir, das sind Kevin Fuhrer und ich, Daniel Eymann. <br>
-        In der Folge wird dir ein hypothetisches Szenario beschrieben. <br>
-        Versuche dich bestmöglich in die Situation zu versetzten und ehrlich zu antworten. <br>
-        Die Auswertung erfolgt vollkommen anonym, Dein Name wird nicht mit Deiner Antwort verknüpft! <br>
-        Solltest Du unsicher sein, oder Dich nicht in der Lage fühlen zu antworten, so hinterlass bei der Frage einfach ein Häckchen bei «kann ich nicht beantworten». <br>
-        Die Umfrage wird anonym durchgeführt, die erhobenen Daten lassen also keine Rückschlüsse auf einzelne Mitarbeiter:innen zu. Solltet Ihr Fragen oder Anregungen haben, so meldet euch ungeniert bei uns. Ob persönlich, via Teams oder über die Emailadresse kaffee@musterag.ch spielt dabei keine Rolle. Die Umfrage läuft ab sofort bis und mit Freitag 22. November 2024. Die Resultate präsentieren wir Euch an der nächsten Mitarbeiterinformation und bedanken uns schon jetzt für Deine Teilnahme. 
-
+        Liebe/r Teilnehmer/in<br>
+        Herzlichen Dank für Deine Teilnahme an dieser Befragung.<br>
+        Wir belästigen Dich nicht lange, 5 Minuten sollten ausreichen, um uns zu helfen, das Kaffeeangebot in unserem Büro neu zu denken.<br>
+        Im Zusammenhang mit der betrieblichen Ablaufoptimierung, nach der pandemiebedingten Homeoffice Zeit, möchten wir den Kaffeekonsum unserer Mitarbeiter etwas genauer unter die Lupe nehmen.<br>
+        Wir, das sind Kevin Fuhrer und ich, Daniel Eymann.<br>
+        In der Folge wird dir ein hypothetisches Szenario beschrieben. Versuche dich bestmöglich in die Situation zu versetzten und ehrlich zu antworten.<br>   
+        Die Umfrage wird anonym durchgeführt, die erhobenen Daten lassen also keine Rückschlüsse auf einzelne Mitarbeiter:innen zu.<br>
+        Solltet Ihr Fragen oder Anregungen haben, so meldet euch ungeniert bei uns. Ob persönlich, via Teams oder über die Emailadresse kaffee@musterag.ch spielt dabei keine Rolle.<br>
+        Die Umfrage läuft ab sofort bis und mit Freitag 22. November 2024. Die Resultate präsentieren wir Euch an der nächsten Mitarbeiterinformation und bedanken uns schon jetzt für Deine Teilnahme. 
     </p>
     <form onsubmit="return validateForm()">
         <div class="question">
@@ -184,16 +191,36 @@
                     <label><input type="radio" name="consumptionChange" value="mehr" onchange="toggleQuestion5()"> mehr</label>
                 </div>
             </div>
-            <div id="question5" class="question hidden">
+            <div class="question">
                 <label class="question-label">
                     <span class="question-number">5.</span>
-                    <span id="consumptionChangeQuestion"></span>
+                    Wie sicher bist Du Dir bei Deiner Einschätzung zur Veränderung Deines Kaffeekonsums?
                 </label>
                 <div class="inline-options">
-                    <label><input type="radio" name="consumptionLikelihood" value="sehr_unwahrscheinlich" required> Sehr unwahrscheinlich</label>
-                    <label><input type="radio" name="consumptionLikelihood" value="relativ_unwahrscheinlich"> Relativ unwahrscheinlich</label>
-                    <label><input type="radio" name="consumptionLikelihood" value="relativ_wahrscheinlich"> Relativ wahrscheinlich</label>
-                    <label><input type="radio" name="consumptionLikelihood" value="sehr_wahrscheinlich"> Sehr wahrscheinlich</label>
+                    <label>
+                        <div>Sehr unsicher</div>
+                        <input type="radio" name="consumptionLikelihood" value="1" required> 1
+                    </label>
+                    <label>
+                        <div>&nbsp;</div>
+                        <input type="radio" name="consumptionLikelihood" value="2"> 2
+                    </label>
+                    <label>
+                        <div>&nbsp;</div>
+                        <input type="radio" name="consumptionLikelihood" value="3"> 3
+                    </label>
+                    <label>
+                        <div>&nbsp;</div>
+                        <input type="radio" name="consumptionLikelihood" value="4"> 4
+                    </label>
+                    <label>
+                        <div>&nbsp;</div>
+                        <input type="radio" name="consumptionLikelihood" value="5"> 5
+                    </label>
+                    <label>
+                        <div>Sehr sicher</div>
+                        <input type="radio" name="consumptionLikelihood" value="6"> 6
+                    </label>
                 </div>
             </div>
         </div>
