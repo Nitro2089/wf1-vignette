@@ -186,9 +186,9 @@
                 </label>
                 <div>
                     Ich trinke <br><br>
-                    <label><input type="radio" name="consumptionChange" value="weniger" required onchange="toggleQuestion5()"> weniger</label>
-                    <label><input type="radio" name="consumptionChange" value="gleichviel" onchange="toggleQuestion5()"> gleichviel</label>
-                    <label><input type="radio" name="consumptionChange" value="mehr" onchange="toggleQuestion5()"> mehr</label>
+                    <label><input type="radio" name="consumptionChange" value="weniger" required> weniger</label>
+                    <label><input type="radio" name="consumptionChange" value="gleichviel"> gleichviel</label>
+                    <label><input type="radio" name="consumptionChange" value="mehr"> mehr</label>
                 </div>
             </div>
             <div class="question">
@@ -333,12 +333,7 @@
             }
             return false; // Prevents form submission for this example
         }
-
-        function toggleQuestion5() {
-            var question5 = document.getElementById('question5');
-            question5.classList.remove('hidden');
-        }
-
+        
         document.querySelectorAll('input[name="consumptionChange"]').forEach(input => {
             input.addEventListener('change', function() {
                 var consumptionChangeQuestion = document.getElementById('consumptionChangeQuestion');
